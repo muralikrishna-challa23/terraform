@@ -5,7 +5,7 @@ variable "ami_id" {
 
 variable "instance_type"{
     type = string
-    default = "t3.micro"
+  #  default = "t3.micro"
 }
 
 variable "ec2_tags"{
