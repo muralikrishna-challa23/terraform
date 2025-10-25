@@ -1,13 +1,13 @@
 resource "aws_instance" "terraform" {
-  ami           = "ami-09c813fb71547fc4f"
-  instance_type = "t3.micro"
+  ami           = local.ami_id
+  instance_type = local.instance_type
   vpc_security_group_ids = [aws_security_group.allow_all_tf.id]
 
-  tags = {
-    Name = "terraform-2"
-    terraform = "true"
+  tags = merge(var.common_tags,
+            {
+              Name = local.common_name
+            })
   }
-}
 
 
 resource "aws_security_group" "allow_all_tf" {

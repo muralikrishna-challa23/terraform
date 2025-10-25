@@ -10,8 +10,8 @@ terraform {
     bucket = "devops-practice-mkreddy"
     key    = "remote-state-demo"
     region = "us-east-1"
-    user_lockfile = true
-    encript = true
+    use_lockfile = true
+    encrypt = true
   }
 
 }
