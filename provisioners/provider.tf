@@ -8,7 +8,7 @@ terraform {
 
     backend "s3" {
     bucket = "devops-practice-mkreddy"
-    key    = "remote-state-demo"
+    key    = "provisioners-demo"
     region = "us-east-1"
     use_lockfile = true
     encrypt = true
