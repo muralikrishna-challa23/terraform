@@ -8,15 +8,35 @@ resource "aws_instance" "terraform" {
     terraform = "true"
   }
 
-  provisioner "local_exec" {
-    command = "echo ${self.private_id} > inventory "
+  provisioner "local-exec" {
+    command = "echo ${self.private_ip} > inventory "
     on_failure = continue
   }
 
-    provisioner "local_exec" {
-    command = "It destroyed "
+  provisioner "local-exec" {
+    command = "echo It destroyed "
     when = destroy
   }
+
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = self.public_ip
+  }
+
+provisioner "remote-exec" {
+    inline = [
+      "sudo dnf install nginx -y",
+      "sudo systemctl start nginx"
+    ]
+  }
+provisioner "remote-exec" {
+    inline = [
+      "sudo systemctl stop nginx"
+    ]
+    when = destroy
+  }  
 }
 
 
